@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Flixcop-App",
-    "slug": "Flixcop-App",
+    "name": "Kwibb",
+    "slug": "Kwibb",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icons/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.kwibb"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/icons/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7d867666-5cd9-4c8c-b974-9735b25d5ab3"
+      }
     }
   }
 }
