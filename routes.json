@@ -1,0 +1,7 @@
+{
+  "/api/***/**/*": "/$1",
+  "/api/products/featured": "/featured",
+  "/api/products/for-you": "/for-you",
+  "/api/products/flash-sales": "/flash-sales",
+  "/api/users/:username" : "/users?username=:username"
+}

@@ -1,0 +1,127 @@
+{
+  "users" : [
+    {
+      "id": "001",
+      "username": "jesulonimii",
+      "first_name": "William",
+      "last_name": "Jesulonimii",
+      "profile_image": "https://jesulonimii.codes/img/me.jpg",
+      "email": "jesulonimii.will@gmail.com"
+    }
+
+  ],
+  "featured" : [
+    {
+      "id" : "oin4b5iv3942un5405",
+      "name" : "Baked Donuts",
+      "retailer" : "Pastryz",
+      "price" : "8500",
+      "images" : [
+        "https://preppykitchen.com/wp-content/uploads/2022/02/Baked-Donuts-Recipe.jpg"
+      ]
+    },
+    {
+      "id" : "d37ujend83woj4w4w2g3",
+      "name" : "Nike Shoes (Red)",
+      "retailer" : "Bliss Collections",
+      "price" : "8500",
+      "images" : [
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80"
+      ]
+    },
+    {
+      "id" : "234ertuygihbj876rt",
+      "name" : "Egusi soup",
+      "retailer" : "Foodie Hub",
+      "price" : "8500",
+      "images" : [
+        "https://www.chefspencil.com/wp-content/uploads/Amala-and-Ewedu-Soup-1.jpg"
+      ]
+    },
+    {
+      "id" : "mnbv4567nmjuk09876",
+      "name" : "New Balance Hoodie",
+      "retailer" : "Fashion Avenue",
+      "price" : "15000",
+      "images" : [
+        "https://nb.scene7.com/is/image/NB/mt03558ecl_nb_70_i?$pdpflexf2$&wid=440&hei=440"
+      ]
+    }
+  ],
+  "flash-sales" : [
+    {
+      "id" : "uytr89765hjkm3421qwe",
+      "name" : "iPhone 13",
+      "retailer" : "Gadget Hub",
+      "price" : "85000",
+      "images" : [
+        "https://www.digitaltrends.com/wp-content/uploads/2021/09/iphone-13-pro-review-dan-baker-35.jpg?p=1"
+      ]
+    },
+    {
+      "id" : "098u76tghjki90olp0",
+      "name" : "Samsung 75-inch Smart TV",
+      "retailer" : "Electronics World",
+      "price" : "200000",
+      "images" : [
+        "https://images.samsung.com/is/image/samsung/assets/global/hq/vd/tvs/smart-tv/samsung-tv-plus/2020-smart-tv-tv-plus-01-kv-mo_1.jpg?$FB_TYPE_B_JPG$"
+      ]
+    },
+    {
+      "id": "stu123vwx456yz789",
+      "name": "Fish and Chips",
+      "retailer": "The Seaside Cafe",
+      "price": "9500",
+      "images": [
+        "https://e3.365dm.com/22/06/2048x1152/skynews-fish-chips_5796594.jpg"
+      ]
+    },
+    {
+      "id" : "123abcd456efg789hi",
+      "name" : "Sugared Puff Puff",
+      "retailer" : "As E Dey Hot",
+      "price" : "500",
+      "images" : [
+        "https://africanbites.com/wp-content/uploads/2012/11/IMG_5039.jpg"
+      ]
+    }
+  ],
+  "for-you" : [
+    {
+      "id": "abc123def456ghi789",
+      "name": "Wireless Earbuds",
+      "retailer": "Soundwave",
+      "price": "12900",
+      "images": [
+        "https://i.guim.co.uk/img/media/25cf5d52dbefc0d076a362caa59d25017124256a/522_714_4090_2454/master/4090.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=12e8863645d9b32ec4ec491f0e32871b"
+      ]
+    },
+    {
+      "id": "pqr123stu456vwx789",
+      "name": "Alexa Smart Home Hub",
+      "retailer": "Home Connect",
+      "price": "13900",
+      "images": [
+        "https://www.zdnet.com/a/img/resize/047e684758d28a6b0e0580840f1d35fe183e6f31/2022/07/15/801b614a-3a25-498e-8ff4-e1141a36cdfe/echo.jpg?auto=webp&fit=crop&height=360&width=640"
+      ]
+    },
+    {
+      "id": "uvw123xyz456abc789",
+      "name": "Cotton T-Shirts",
+      "retailer": "Fresh Threads",
+      "price": "3499",
+      "images": [
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/76/260328/1.jpg?9451"
+      ]
+    },
+    {
+      "id": "def123ghi456jkl789",
+      "name": "Folding Bicycles",
+      "retailer": "CycleX",
+      "price": "26900",
+      "images": [
+        "https://discerningcyclist.com/wp-content/uploads/2021/09/folding-bikes.jpg"
+       ]
+    }
+  ]
+}

@@ -1,29 +1,38 @@
-import React, {useContext, useEffect} from 'react';
-import {Button, Image, ScrollView, Text, TextInput, View} from "react-native";
+import React, {useContext, useEffect, useState} from 'react';
+import {Image, ScrollView, Text, TextInput, View} from "react-native";
 import * as Icons from "react-native-heroicons/outline";
 import Logo from '../../assets/icons/icon.svg';
 import CustomButton from "../../components/ui/CustomButton.ui";
 import {Card} from "../../components/ui";
 import {Body} from "../../components/layout";
 import {GLOBAL} from "../../utils";
-import {ScreenContext} from "../../context";
+import {ScreenContext, UserContext} from "../../context";
 import moment from "moment";
-import nike from "../../assets/images/nike.png";
 import Swiper from 'react-native-swiper'
+import {useQuery} from "@tanstack/react-query";
+import {getFeaturedItems, getForYouItems} from "../../api";
+import {getFlashSales} from "../../api/Home.api";
 
 
-function HomeScreen(props) {
+function HomeScreen() {
 
-    const {active_screen, setActiveScreen} = useContext(ScreenContext)
-
+    const {setActiveScreen} = useContext(ScreenContext)
     useEffect(() => {
         setActiveScreen("home")
     }, [])
 
+    const {user} = useContext(UserContext)
+    const {first_name, profile_image} = user
 
-    const {className = ''} = props
+    const EMPTY = []
 
-    const name = "William"
+
+    const [featuredItems, setFeaturedItems] = useState([])
+    const [forYouItems, setForYouItems] = useState([])
+    const [flashSales, setFlashSales] = useState([])
+
+
+
 
 
 
@@ -34,35 +43,54 @@ function HomeScreen(props) {
     }
 
 
-    const img1 = [
-        "https://preppykitchen.com/wp-content/uploads/2022/02/Baked-Donuts-Recipe.jpg",
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
-        "https://n.nordstrommedia.com/id/sr3/8b32d747-e7ee-48ea-9775-52c7b4f84b04.jpeg?h=365&w=240&dpr=2",
-        "https://cdn.littlebluehouse.com/product_images/buffalo-plaid-mens-heritage-button-down-shirt/BDMPLAD012_jpg/pdp_zoom.jpg?c=1671116607&locale=us_en",
-    ]
+    const {data : getFeaturedProducts, refetch : refetchFeaturedItems} = useQuery({
+        queryKey: ['featured-items'],
+        queryFn: getFeaturedItems,
+        onSuccess: (data) => {
 
-    const img2 = [
-        "https://www.chefspencil.com/wp-content/uploads/Amala-and-Ewedu-Soup-1.jpg",
-        "https://nb.scene7.com/is/image/NB/mt03558ecl_nb_70_i?$pdpflexf2$&wid=440&hei=440",
-        "https://rukminim1.flixcart.com/image/612/612/xif0q/shoe/g/c/o/9-rockey-9-magnolia-white-original-imaggutpbvcczyhf.jpeg?q=70",
-        "https://images.vans.com/is/image/VansEU/VN0A3WMAVNE-HERO?$PDP-FULL-IMAGE$",]
+            setFeaturedItems(data)
 
-    const img3 = [
-        "https://images.food52.com/e6RyxggWQpBwCPcd3kugqz01J54=/2016x1344/filters:format(webp)/583d2633-65c0-43d6-9b52-cba0c8fa1399--2019-1210_nigerian-jollof-rice_3x2_rocky-luten_006.jpg",
-        "https://images.vans.com/is/image/VansEU/VN0A3WMAVNE-HERO?$PDP-FULL-IMAGE$",
-        "https://nb.scene7.com/is/image/NB/mt03558ecl_nb_70_i?$pdpflexf2$&wid=440&hei=440",
-        "https://www.chefspencil.com/wp-content/uploads/Amala-and-Ewedu-Soup-1.jpg",
-        "https://rukminim1.flixcart.com/image/612/612/xif0q/shoe/g/c/o/9-rockey-9-magnolia-white-original-imaggutpbvcczyhf.jpeg?q=70",
-    ]
+        },
+        onError: (error) => {
+            console.log(error)
+        }
+    })
+
+    const {data : getForYouProducts,  refetch : refetchForYouItems} = useQuery({
+        queryKey: ['for-you-items'],
+        queryFn: getForYouItems,
+        onSuccess: (data) => {
+            //console.log("for-you-data", data)
+            setForYouItems(data)
+        },
+        onError: (error) => {
+            console.log(error)
+        }
+    })
+
+    const {data : getFlashSalesProducts,  refetch : refetchFlashSales} = useQuery({
+        queryKey: ['flash-sales'],
+        queryFn: getFlashSales,
+        onSuccess: (data) => {
+            //console.log("flash", data)
+            setFlashSales(data)
+        },
+        onError: (error) => {
+            console.log(error)
+        }
+    })
+
 
 
     const day = moment().format("dddd")
 
+
+
     const homeCategories = [
-        {name: "Featured Products", list: img1},
-        {name: "Top picks for you", list: img2},
-        {name: `${day} Buzz`, list: img3}
-]
+        {name: "Featured Products", list: featuredItems || EMPTY },
+        {name: "Top picks for you", list: forYouItems || EMPTY },
+        {name: `${day} Flash Sales `, list: flashSales || EMPTY }
+    ]
 
 
 
@@ -72,7 +100,7 @@ function HomeScreen(props) {
             
             <View className="w-full drop-shadow flex-row bg-white p-4 h-14 items-center justify-between">
                 
-                <Image className="w-8 aspect-square rounded-full" source={{uri : "https://jesulonimii.codes/img/me.jpg"}} />
+                <Image className="w-8 aspect-square rounded-full" source={{uri : profile_image}} />
 
                 <View className="w-8">
                     <Logo />
@@ -82,7 +110,6 @@ function HomeScreen(props) {
 
 
             </View>
-
 
             <Body>
 
@@ -97,7 +124,7 @@ function HomeScreen(props) {
 
                         }
 
-                        <Text className="text-primary">{name}</Text>,
+                        <Text className="text-primary">{first_name}</Text>,
                     </Text>
 
                     <Text className="text-gray-400 mt-1">
@@ -112,40 +139,75 @@ function HomeScreen(props) {
 
                 </Card>
 
-                <Card style="mt-4 flex-1 h-fit mb-8 pb-4 p-0 py-2  justify-start">
+                <Card style="mt-4 flex-1 h-fit mb-8 p-0 py-2 pb-8  justify-start">
 
 
                     {
 
-                        homeCategories.map((item, index) =>{
+                        homeCategories.map((category, index) =>{
+
 
                             return (
 
-                                <View key={index} className="w-full h-64 flex-1 p-3 mb-2">
+                                <View key={index} className="w-full h-[38vh] flex-1 p-3 mb-4">
 
-                                    <Text className="text-md capitalize font-outfit-medium" >{item.name}</Text>
+                                    <Text className="text-md capitalize font-outfit-medium" >{category.name}</Text>
 
-                                    <Swiper className="mt-4 rounded-lg" {...customPagination}  autoplay loop={false}  horizontal={true}>
+                                    <ScrollView className="h-12 w-full mt-4 pb-3" horizontal keyboardDismissMode="on-drag" showsHorizontalScrollIndicator={false} >
 
                                         {
 
-                                            item.list.map((item, index) => (
+                                            category.list.map((item, index) => {
 
-                                                    <View  className="w-full h-full rounded-lg border-1 border-gray-300 bg-red-500 justify-center" key={index}>
+                                                    return (
 
-                                                        <Image className="w-full rounded-lg flex-1" source={{uri: item}}/>
+                                                        <View  className="flex-1 w-[300px] mr-1 h-full rounded-lg border-solid border border-gray-100 bg-gray-50 justify-center " key={index}>
+
+                                                            <Image className="w-full h-32 bg-red-400 rounded-t-lg flex-1" source={{uri: item.images[0] }}/>
+
+                                                            <View className="my-2 p-3" >
+                                                                <Text className="text-primary font-outfit-bold" >{item.name}</Text>
+                                                                <Text className="text-gray-900 text-sm" >₦{parseInt(item.price).toLocaleString("en-US")}</Text>
+                                                                <Text className="text-gray-500 text-sm" >By: {item.retailer}</Text>
+                                                            </View>
+
+                                                        </View>
+
+                                                    )
+
+                                                }
+                                            )
+
+                                        }
+
+                                    </ScrollView>
+
+                                    {/*<Swiper className="mt-4 rounded-lg" {...customPagination}  autoplay loop={true}  horizontal={true}>
+
+                                        {
+
+                                            viewList.map((item, index) => {
+
+                                                const img = item.images[0]
+
+                                               return (
+
+                                                    <View  className="w-full h-full rounded-lg border-1 border-gray-300 bg-primary justify-center" key={index}>
+
+                                                        <Image className="w-full rounded-lg flex-1" source={{uri: img }}/>
 
 
                                                     </View>
 
-
-
                                                 )
+
+                                                }
                                             )
 
                                         }
 
                                     </Swiper>
+*/}
 
                                 </View>
 
